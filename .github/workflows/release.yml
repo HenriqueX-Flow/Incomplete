@@ -1,0 +1,94 @@
+name: Auto Release
+
+on:
+    push:
+        tags:
+            - "v*"
+
+permissions:
+    contents: write
+
+concurrency:
+    group: release-${{ github.ref }}
+    cancel-in-progress: false
+
+jobs:
+    build:
+        name: Validação
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v4
+
+            - name: Setup Node.js
+              uses: actions/setup-node@v4
+              with:
+                  node-version: 20
+                  cache: npm
+
+            - name: Install dependencies
+              run: npm ci
+
+            # Projeto JS puro (sem TypeScript): em vez de "typecheck/build"
+            # (que não existem aqui), validamos a sintaxe de todos os .js.
+            - name: Checar sintaxe
+              run: npm run check
+
+    release:
+        name: Publish Release
+        needs: build
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout (full history)
+              uses: actions/checkout@v4
+              with:
+                  fetch-depth: 0
+
+            - name: Generate changelog
+              id: changelog
+              run: |
+                  PREVIOUS_TAG=$(git describe --tags --abbrev=0 --match "v*" HEAD^ 2>/dev/null || true)
+                  {
+                      echo "## ✨ O que mudou"
+                      echo
+                      if [ -n "$PREVIOUS_TAG" ]; then
+                          git log --oneline --no-merges "$PREVIOUS_TAG..HEAD"
+                      else
+                          git log --oneline --no-merges HEAD
+                      fi
+                  } > "$RUNNER_TEMP/CHANGELOG.md"
+                  cat "$RUNNER_TEMP/CHANGELOG.md"
+
+            - name: Create GitHub Release
+              uses: softprops/action-gh-release@v2
+              with:
+                  body_path: "${{ runner.temp }}/CHANGELOG.md"
+                  prerelease: ${{ contains(github.ref_name, '-') }}
+                  draft: false
+
+            - name: Update latest.json on default branch
+              run: |
+                  git config user.name "github-actions[bot]"
+                  git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+                  DEFAULT_BRANCH=$(git symbolic-ref --short refs/remotes/origin/HEAD 2>/dev/null || echo main)
+                  git fetch origin "$DEFAULT_BRANCH"
+                  git checkout -B "$DEFAULT_BRANCH" "origin/$DEFAULT_BRANCH"
+
+                  TAG="${{ github.ref_name }}"
+                  VERSION="${TAG#v}"
+                  cat > latest.json <<EOF
+                  {
+                      "version": "${VERSION}",
+                      "tag": "${TAG}",
+                      "url": "https://github.com/${{ github.repository }}/releases/tag/${TAG}",
+                      "published_at": "$(date -u +%Y-%m-%dT%H:%M:%SZ)",
+                      "prerelease": $(if [[ "$TAG" == *-* ]]; then echo true; else echo false; fi),
+                      "notes": "Nova versão do Incomplete! Confira o changelog completo em ${TAG}."
+                  }
+                  EOF
+
+                  git add latest.json
+                  git diff --cached --quiet && exit 0
+                  git commit -m "chore: atualiza latest.json para ${TAG}"
+                  git push origin "$DEFAULT_BRANCH"

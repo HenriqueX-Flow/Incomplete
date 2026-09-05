@@ -1,0 +1,6 @@
+.git
+session/
+node_modules/
+database/
+*.log
+package-lock.json

@@ -1,0 +1,7 @@
+.cache
+.git
+node_modules/
+data.json
+package-lock.json
+session/
+dist/

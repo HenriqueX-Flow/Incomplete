@@ -1,0 +1,20 @@
+{
+    "compilerOptions": {
+        "target": "ES2022",
+        "module": "NodeNext",
+        "moduleResolution": "NodeNext",
+        "resolveJsonModule": true,
+        "allowSyntheticDefaultImports": true,
+        "strictNullChecks": false,
+        "baseUrl": ".",
+        "paths": {
+            "#core/*": ["./src/core/*"],
+            "#plugins/*": ["./src/plugins/*"],
+            "#canvas/*": ["./src/canvas/*"],
+            "#utils/*": ["./src/utils/*"],
+            "#whatsapp/*": ["./src/whatsapp/*"]
+        }
+    },
+    "include": ["src/**/*"],
+    "exclude": ["node_modules"]
+}

@@ -1,0 +1,80 @@
+{
+    "botName": "Incomplete",
+    "owner": ["5511999999999"],
+    "preview": "https://github.com/HenriqueX-Flow/Incomplete",
+    "ownerName": "Seu Nome",
+    "prefix": "!",
+    "limit": 20,
+    "premiumLimit": 60,
+    "limitResetHours": 24,
+    "cooldown": 3000,
+    "xp": {
+        "min": 8,
+        "max": 20,
+        "cooldown": 60000
+    },
+    "antiflood": {
+        "enabled": true,
+        "windowMs": 8000,
+        "maxCommands": 3,
+        "removeLimit": 3,
+        "banAfterStrikes": 2,
+        "decayMs": 3600000
+    },
+    "antilink": {
+        "protectDelayMs": 4000
+    },
+    "antilinkPenalty": {
+        "enabled": true,
+        "removeLimit": 0,
+        "removePremium": true,
+        "banAfterStrikes": 0
+    },
+    "spiderx": {
+        "token": "",
+        "baseUrl": "https://api.spiderx.com.br"
+    },
+    "economy": {
+        "currencyName": "Nemesis Credits",
+        "currencySymbol": "NC",
+        "dailyMin": 20,
+        "dailyMax": 60,
+        "dailyCooldownHours": 24,
+        "limitPackage": {
+            "price": 50,
+            "amount": 20
+        },
+        "premiumPackages": {
+            "1h": {
+                "price": 80,
+                "ms": 3600000
+            },
+            "1d": {
+                "price": 400,
+                "ms": 86400000
+            },
+            "7d": {
+                "price": 2000,
+                "ms": 604800000
+            },
+            "permanent": {
+                "price": 15000
+            }
+        }
+    },
+    "greetings": {
+        "minDelayMs": 3000,
+        "maxDelayMs": 12000,
+        "maxBatchSize": 5
+    },
+    "database": "../database/data.json",
+    "session": {
+        "usePairingCode": true,
+        "phoneNumber": "5511999999999",
+        "browser": [
+            "Ubuntu",
+            "Chrome",
+            "120.0.0"
+        ]
+    }
+}

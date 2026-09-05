@@ -1,0 +1,59 @@
+{
+    "name": "Incomplete",
+    "version": "1.0.3-beta.1",
+    "author": "HenriqueX Creative",
+    "description": "Bot De WhatsApp Educacional Usando Baileys",
+    "private": true,
+    "scripts": {
+        "start": "node src/startup.js",
+        "check": "node scripts/check-syntax.js"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/HenriqueX-Flow/Incomplete.git"
+    },
+    "keywords": [
+        "baileys-api",
+        "whatsapp-bot"
+    ],
+    "license": "MIT",
+    "type": "module",
+    "imports": {
+        "#media/*": "./media/*",
+        "#core/*": "./src/core/*",
+        "#app/*": "./src/*",
+        "#plugins/*": "./src/plugins/*",
+        "#canvas/*": "./src/canvas/*",
+        "#utils/*": "./src/utils/*",
+        "#whatsapp/*": "./src/whatsapp/*"
+    },
+    "dependencies": {
+        "@clack/prompts": "^1.7.0",
+        "@hapi/boom": "^10.0.1",
+        "@napi-rs/canvas": "^1.0.2",
+        "baileys": "^7.0.0-rc14",
+        "blessed": "^0.1.81",
+        "cfonts": "^3.3.1",
+        "chalk": "^5.6.2",
+        "gradient-string": "^3.0.0",
+        "jimp": "~0.22.12",
+        "pino": "^9.3.2",
+        "qrcode-terminal": "^0.12.0",
+        "sharp": "^0.35.4",
+        "shelljs": "^0.10.0"
+    },
+    "overrides": {
+        "jimp": "~0.22.12"
+    },
+    "resolutions": {
+        "jimp": "~0.22.12"
+    },
+    "bugs": {
+        "url": "https://github.com/HenriqueX-Flow/Incomplete/issues"
+    },
+    "homepage": "https://github.com/HenriqueX-Flow/Incomplete#readme",
+    "allowScripts": {
+        "baileys@7.0.0-rc14": true,
+        "protobufjs@7.6.6": true
+    }
+}

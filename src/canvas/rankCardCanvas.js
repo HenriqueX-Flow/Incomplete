@@ -1,7 +1,6 @@
 import fs from "fs";
-import path from "path";
+import { resolve } from "#utils/path.js";
 
-const FONT_PATH = path.join(process.cwd(), "assets", "fonts", "font.ttf");
 let fontChecked = false;
 let fontOk = false;
 
@@ -14,8 +13,8 @@ let fontOk = false;
 function ensureFont(GlobalFonts) {
     if (fontChecked) return fontOk;
     fontChecked = true;
-    fontOk = fs.existsSync(FONT_PATH);
-    if (fontOk) GlobalFonts.registerFromPath(FONT_PATH, "BotFont");
+    fontOk = fs.existsSync(resolve("#assets/fonts/font.ttf"));
+    if (fontOk) GlobalFonts.registerFromPath(resolve("#assets/fonts/font.ttf"), "BotFont");
     return fontOk;
 }
 

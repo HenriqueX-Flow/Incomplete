@@ -19,6 +19,7 @@
     "license": "MIT",
     "type": "module",
     "imports": {
+        "#assets/*": "./assets/*",
         "#media/*": "./media/*",
         "#core/*": "./src/core/*",
         "#app/*": "./src/*",

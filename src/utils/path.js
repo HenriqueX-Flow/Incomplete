@@ -21,6 +21,7 @@ const ROOT = path.resolve(__dirname, "../..");
  * no campo "imports" do package.json.
  */
 const aliases = {
+    "#assets": "assets",
     "#media": "media",
     "#core": "src/core",
     "#app": "src",

@@ -35,7 +35,7 @@
         "baileys": "^7.0.0-rc14",
         "blessed": "^0.1.81",
         "cfonts": "^3.3.1",
-        "chalk": "^5.6.2",
+        "chalk": "^6.0.0",
         "gradient-string": "^3.0.0",
         "jimp": "~0.22.12",
         "pino": "^9.3.2",

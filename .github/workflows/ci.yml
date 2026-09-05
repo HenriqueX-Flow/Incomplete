@@ -29,8 +29,6 @@ jobs:
 
             - name: Install dependencies
               run: npm ci
-
-            # Projeto JS puro (sem TypeScript): em vez de "typecheck/build"
-            # (que não existem aqui), validamos a sintaxe de todos os .js.
+              
             - name: Checar sintaxe
               run: npm run check

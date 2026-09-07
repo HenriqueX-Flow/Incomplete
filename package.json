@@ -31,7 +31,7 @@
     "dependencies": {
         "@clack/prompts": "^1.7.0",
         "@hapi/boom": "^10.0.1",
-        "@napi-rs/canvas": "^1.0.2",
+        "@napi-rs/canvas": "^1.0.8",
         "baileys": "^7.0.0-rc14",
         "blessed": "^0.1.81",
         "cfonts": "^3.3.1",

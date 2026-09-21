@@ -29,7 +29,7 @@
         "#whatsapp/*": "./src/whatsapp/*"
     },
     "dependencies": {
-        "@clack/prompts": "^1.7.0",
+        "@clack/prompts": "^1.8.1",
         "@hapi/boom": "^10.0.1",
         "@napi-rs/canvas": "^1.0.2",
         "baileys": "^7.0.0-rc14",
